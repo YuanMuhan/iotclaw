@@ -1,0 +1,137 @@
+{
+  "version": "0.1",
+  "capabilities": [
+    {
+      "name": "sense",
+      "family": "acquisition",
+      "description": "Collect raw data from the physical environment.",
+      "input_types": [],
+      "output_types": ["ImageFrame", "AudioFrame", "SensorValue"],
+      "examples": [
+        "capture camera frame",
+        "sample temperature sensor",
+        "capture microphone audio chunk"
+      ]
+    },
+    {
+      "name": "read",
+      "family": "acquisition",
+      "description": "Read existing digital state, records, files, or cached values.",
+      "input_types": ["StateRef", "FileRef", "CacheRef"],
+      "output_types": ["Text", "Number", "Boolean", "Record"],
+      "examples": [
+        "read device state",
+        "read local configuration",
+        "read historical log"
+      ]
+    },
+    {
+      "name": "filter",
+      "family": "processing",
+      "description": "Clean, preprocess, prune, or denoise input data.",
+      "input_types": ["ImageFrame", "AudioFrame", "SensorValue", "Text"],
+      "output_types": ["ImageFrame", "AudioFrame", "SensorValue", "Text"],
+      "examples": [
+        "crop input image",
+        "smooth sensor sequence",
+        "remove noisy samples"
+      ]
+    },
+    {
+      "name": "detect",
+      "family": "processing",
+      "description": "Identify whether a target event, object, or pattern exists.",
+      "input_types": ["ImageFrame", "AudioFrame", "SensorValue", "Text"],
+      "output_types": ["Boolean", "Event", "Label"],
+      "examples": [
+        "detect fall event",
+        "detect smoke",
+        "detect motion"
+      ]
+    },
+    {
+      "name": "infer",
+      "family": "processing",
+      "description": "Produce a higher-level semantic interpretation or latent state estimate.",
+      "input_types": ["ImageFrame", "AudioFrame", "SensorValue", "Record", "Text"],
+      "output_types": ["Label", "Score", "StateEstimate"],
+      "examples": [
+        "infer activity type",
+        "infer risk level",
+        "infer health status trend"
+      ]
+    },
+    {
+      "name": "compare",
+      "family": "processing",
+      "description": "Compare input values against thresholds, ranges, or conditions.",
+      "input_types": ["Number", "Score", "Boolean", "StateEstimate"],
+      "output_types": ["Boolean", "ConditionResult"],
+      "examples": [
+        "temperature exceeds threshold",
+        "risk score above alert line",
+        "state equals target state"
+      ]
+    },
+    {
+      "name": "decide",
+      "family": "decision_execution",
+      "description": "Choose a strategy, branch, or response based on previous results.",
+      "input_types": ["Boolean", "ConditionResult", "Label", "Score", "StateEstimate"],
+      "output_types": ["Decision", "ActionRequest"],
+      "examples": [
+        "decide whether to trigger alarm",
+        "decide whether to escalate",
+        "select next action path"
+      ]
+    },
+    {
+      "name": "act",
+      "family": "decision_execution",
+      "description": "Execute an action that changes the device, system, or physical environment.",
+      "input_types": ["ActionRequest", "ControlCommand"],
+      "output_types": ["ActionStatus", "Boolean"],
+      "examples": [
+        "turn on light",
+        "unlock door",
+        "start fan"
+      ]
+    },
+    {
+      "name": "notify",
+      "family": "interaction_persistence",
+      "description": "Send information, alarm, reminder, or report to a person or external system.",
+      "input_types": ["Alert", "Text", "Report"],
+      "output_types": ["NotificationStatus", "Boolean"],
+      "examples": [
+        "send app notification",
+        "send SMS alert",
+        "report to dashboard"
+      ]
+    },
+    {
+      "name": "store",
+      "family": "interaction_persistence",
+      "description": "Persist data, results, or records for later use.",
+      "input_types": ["Record", "Text", "ImageFrame", "Score", "StateEstimate"],
+      "output_types": ["StorageStatus", "Boolean"],
+      "examples": [
+        "write database entry",
+        "append log",
+        "save inference result"
+      ]
+    },
+    {
+      "name": "schedule",
+      "family": "interaction_persistence",
+      "description": "Define periodic or time-based triggering.",
+      "input_types": ["TimeSpec", "IntervalSpec"],
+      "output_types": ["TriggerEvent"],
+      "examples": [
+        "run every 5 seconds",
+        "trigger daily at 08:00",
+        "sync hourly"
+      ]
+    }
+  ]
+}
